@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable">
+     <aura:attribute type="string" name="fName"/>
+    <aura:attribute type="string" name="lName"/>
+    <aura:attribute type="string" name="flName"/>
+	<h1>My Identity Form</h1>
+     <div class="row">
+        <lightning:input type="text" value="{!v.fName}" name="firstName" label="Enter your first name" />
+         <br/>
+        <lightning:input type="text" value="{!v.lName}" name="LastName" label="Enter your last name" />
+         <br/>
+         <lightning:input type="text" value="{!v.flName}" name="fullname" />
+                  <br/>
+         <p>{!v.flName}</p>
+                  <br/>
+        <lightning:button label="Save" onclick="{!c.ShowFullName}"/>
+    </div>
+
+</aura:component>

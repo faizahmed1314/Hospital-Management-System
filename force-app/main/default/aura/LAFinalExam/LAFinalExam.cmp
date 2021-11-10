@@ -1,0 +1,11 @@
+<aura:component implements="lightning:actionOverride,force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+access="global" >
+<aura:attribute name="firstNum" type="Integer" />
+<aura:attribute name="secondNum" type="Integer" />
+<aura:attribute name="sum" type="Integer" />
+<div class="wrapper">
+    <lightning:input  onchange="{!c.findSum}" label="A" aura:id="A" type="Integer" placeholder="A"/>
+    <lightning:input  onchange="{!c.findSum}"  label="B" aura:id="B" type="Integer" placeholder="B"/>
+    <lightning:input  onchange="{!c.findValueB}" label="A+B" aura:id="C" type="Integer" placeholder="A+B"/>
+</div>
+</aura:component>

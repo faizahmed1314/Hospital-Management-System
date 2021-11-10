@@ -1,0 +1,22 @@
+<aura:component implements="lightning:actionOverride,force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+access="global"
+controller="StudentController">
+
+<aura:attribute name="students" type="Student__c" />
+<aura:attribute name="name" type="String" />
+<aura:attribute name="address" type="String" />
+<aura:attribute name="email" type="String" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="wrapper">
+        <lightning:input value="{!v.name}" label="Name" />
+        <lightning:input value="{!v.address}" label="Address" />
+        <lightning:input value="{!v.email}" label="Email" />
+        <lightning:button onclick="{!c.saveStudent}" type="submit" label="Save"/>
+        <ul>
+        <aura:iteration items="{!v.students}" var="item">
+            <li>Name : {!item.Name}</li>
+        </aura:iteration>
+        </ul>
+    </div>
+</aura:component>

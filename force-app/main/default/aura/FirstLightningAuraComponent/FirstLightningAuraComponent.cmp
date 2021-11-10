@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <h1>Hello Component</h1>
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}"/>
+        <aura:attribute type="string" name="name"/>
+    	<aura:attribute name="contactList" type="List" />
+    	<p>Hello  {!v.name}</p>
+    
+        <div aura:id="recordViewForm">
+            <aura:iteration items="{!v.contactList}" var="contact">
+              
+            <lightning:recordViewForm recordId="{!contact.Id}" objectApiName="Contact">
+            <div class="slds-box slds-theme_default">
+           
+            <lightning:outputField fieldName="FirstName" />
+            <lightning:outputField fieldName="LastName" />
+            <lightning:outputField fieldName="Email" />
+            <lightning:outputField fieldName="Phone" />
+            </div>
+            </lightning:recordViewForm>
+            <br />
+            </aura:iteration>
+    	</div>
+</aura:component>

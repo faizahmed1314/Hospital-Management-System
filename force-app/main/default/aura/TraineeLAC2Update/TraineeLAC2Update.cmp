@@ -1,0 +1,57 @@
+<aura:component implements="lightning:actionOverride,force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+access="global"
+controller="TraineeController">
+<!-- Pass method from parent to child -->
+<aura:attribute name="parent" type="Aura.Component" />
+<!-- store value in the variable -->
+<aura:attribute name="name" type="String" />
+<aura:attribute name="address" type="String" />
+<aura:attribute name="age" type="Integer" />
+<aura:attribute name="id" type="String" />
+<!-- confirmation dailog box variable -->
+<aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
+
+    <tr>
+        <td data-label="Name">
+            <lightning:input value="{!v.name}"/>
+        </td>
+        <td data-label="Address">
+            <lightning:input value="{!v.address}"/>
+        </td>
+        <td data-label="Age">
+            <lightning:input value="{!v.age}"/>
+        </td> 
+        <td>
+            <lightning:button onclick="{!c.updateTrainee}" type="submit" label="Update"/>
+            
+            <lightning:button onclick="{!c.handleConfirmDialog}" label="Delete"/>
+            
+            <aura:if isTrue="{!v.showConfirmDialog}">
+                <!--Modal Box Start-->
+                <div role="dialog" class="slds-modal slds-fade-in-open ">
+                    <div class="slds-modal__container">
+                        <!--Modal Box Header Start-->
+                        <header class="slds-modal__header">
+                            <h1 class="slds-text-heading--medium">Confirmation</h1>
+                        </header>
+                        <!--Modal Box Header End-->
+                         
+                        <!--Modal Box Content Start-->
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <center><b>Are you sure you want to delete this item?</b></center>
+                        </div>
+                        <!--Modal Box Content End-->
+                         
+                        <!--Modal Box Button Start-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button name='No' label='No' onclick='{!c.handleConfirmDialogNo}'/>
+                            <lightning:button variant="brand" name='Yes' label='Yes' onclick='{!c.handleConfirmDialogYes}'/>
+                        </footer>
+                        <!--Modal Box Button End-->
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>            
+            </aura:if>
+        </td>       
+    </tr>
+</aura:component>

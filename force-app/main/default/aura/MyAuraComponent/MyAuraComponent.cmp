@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <div>
+        This is the aure component
+    
+    <lightning:button variant="success" label="Success" title="Success" onclick="{! c.handleClick }"/>
+
+    </div>
+    
+    <div style="padding: 20px;">
+        <iframe aura:id="myIframe" src="https://bjitlimited52-dev-ed--c.visualforce.com/apex/myVFPage" width="100%" height="400px" frameborder="0">
+        </iframe>
+    </div>    
+
+
+</aura:component>

@@ -1,0 +1,95 @@
+<aura:component implements="lightning:actionOverride,force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+access="global"
+controller="DoctorController">
+
+<!-- pass method to child component -->
+<aura:method name="doInit"/>
+
+<!-- <aura:attribute name="ObjectName" type="String" default="Doctor__c" access="global"/> Object Name as String -->
+
+<aura:attribute name="GenderPicklist" type="String[]" />  <!-- Picklist Values of Gender__c Field -->
+<aura:attribute name="BloodGroupPicklist" type="String[]" />  <!-- Picklist Values of Blood_Group__c Field -->
+<aura:attribute name="SpecializationPicklist" type="String[]" />  <!-- Picklist Values of Specialization__c Field -->
+
+<aura:attribute name="doctors" type="Doctor__c" />
+<aura:attribute name="name" type="String" />
+<aura:attribute name="email" type="String" />
+<aura:attribute name="phone" type="Integer" />
+<aura:attribute name="dob" type="Date" />
+
+<aura:attribute name="gender" type="String"  access="global"/>  <!-- Field Name as String-->
+<aura:attribute name="bloodGroup" type="String"  access="global"/> <!-- Field Name as String-->
+<aura:attribute name="specialization" type="String"  access="global"/> <!-- Field Name as String-->
+
+<!-- <aura:attribute name="gender" type="String" default="Gender__c" access="global"/>
+<aura:attribute name="bloodGroup" type="String" default="Blood_Group__c" access="global"/> 
+<aura:attribute name="specialization" type="String" default="Specialization__c" access="global"/>  -->
+
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <div class="wrapper">
+    <div class="form">
+        <lightning:input value="{!v.name}" aura:id="name"  placeholder="Enter your name" label="Name" />
+        <lightning:input value="{!v.email}" type="email" name="email" required="true" placeholder="Enter your email" label="Email" />
+        <lightning:input value="{!v.phone}" type="tel" name="phone"  placeholder="Enter your phone Number" label="Phone"/>
+        <lightning:input value="{!v.dob}" type="date" name="dob" label="Date of birth" />
+
+        <lightning:select label="Gender" required="true" value="{!v.gender}">
+          <aura:iteration items="{!v.GenderPicklist}" var="val">
+            <option value="{!val}"> {!val}</option>
+        </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Blood Group" value="{!v.bloodGroup}" >
+          <aura:iteration items="{!v.BloodGroupPicklist}" var="val">
+            <option value="{!val}"> {!val}</option>
+        </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Specialization" value="{!v.specialization}" onchange="{!c.handleOnChange}"  required="true">
+          <aura:iteration items="{!v.SpecializationPicklist}" var="val">
+            <option value="{!val}"> {!val}</option>
+        </aura:iteration>
+        </lightning:select>
+
+        <lightning:button variant="brand" class="button" onclick="{!c.saveDoctor}" type="submit" label="Save"/>
+
+    </div>
+      <!-- the container element determine the height of the datatable -->
+      <div class="slds">
+        <table data-reactroot="" class="slds-table slds-table_bordered slds-table_cell-buffer">
+          <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">
+                <div class="slds-truncate" title="Trainee Name">Name</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Address">Email</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Age">Phone</div>
+              </th> 
+              <th scope="col">
+                <div class="slds-truncate" title="Age">DOB</div>
+              </th> 
+              <th scope="col">
+                <div class="slds-truncate" title="Age">Gender</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Age">Blood Group</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Age">Specialization</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Action">Action</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.doctors}" var="item">
+                <c:DoctorDataTable name="{!item.Doctor_Name__c}" email="{!item.Email__c}" phone="{!item.Phone__c}" dob="{!item.DOB__c}" gender="{!item.Gender__c}" bloodGroup="{!item.Blood_Group__c}" specialization="{!item.Specialization__c}"  id="{!item.Id}" parent="{! this }"/>
+            </aura:iteration>                
+          </tbody>
+        </table> 
+  </div>
+</div>
+</aura:component>

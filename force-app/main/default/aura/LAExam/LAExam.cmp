@@ -1,0 +1,22 @@
+<aura:component implements="lightning:actionOverride,force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+access="global" controller="LAExamController">
+
+<aura:attribute name="name" type="String" />
+<aura:attribute name="password" type="String" />
+<aura:attribute name="nameValid" type="Integer" />
+
+    <div class="wrapper">
+        <lightning:input  required="true" pattern="([0-9]+)" onchange="{!c.enableSubmitButton}" aura:id="name" label="Name" placeholder="Name"/>
+        <lightning:input required="true" minlength="6" onchange="{!c.enableSubmitButton}" label="Password" aura:id="password" type="password" placeholder="Password"/>
+        <lightning:button variant="brand"  onclick="{!c.onClicked}" aura:id="button"  disabled="true" type="submit" label="Submit"/>
+
+        <lightning:select value="C">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </lightning:select>
+    </div>
+
+
+
+</aura:component>

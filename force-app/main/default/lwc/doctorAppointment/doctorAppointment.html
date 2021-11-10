@@ -1,0 +1,29 @@
+<template>
+    <lightning-combobox
+            name="progress"
+            label="Status"
+            value={value}
+            placeholder="Select Progress"
+            options={options}
+            onchange={handleChange} ></lightning-combobox>
+
+
+    <p>Selected value is: {value}</p>
+
+    <div>
+        <select class="slds-select" id="select-01" onchange={getAppointment}>
+            <template for:each = {data} for:item="item">
+            <option key={item.Id} value={item.Id}>{item.Doctor_Name__c}</option>
+            </template>
+    </select>
+    </div>
+
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={appointment}
+                columns={columns}>
+        </lightning-datatable>
+    </div>  
+
+</template>
